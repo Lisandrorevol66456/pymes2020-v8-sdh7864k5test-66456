@@ -1,0 +1,23 @@
+<div class="container">
+  <h3>{{Titulo}}</h3>
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">idservicio</th>
+          <th class="text-center">descripcion</th>
+          <th class="text-center">importe</th>
+          <th class="text-center">cantidadhoras</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let servi of servis">
+          <td>{{servi.idservicio}}</td>
+          <td>{{servi.descripcion | uppercase}}</td>
+          <td>{{servi.importe}}</td>
+          <td>{{servi.cantidadhoras}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

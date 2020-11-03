@@ -24,7 +24,8 @@ export class ArticulosService {
     if (Nombre != null) {
       params = params.append("Nombre", Nombre);
     }
-    if (Activo != null) {   // para evitar error de null.ToString()
+    if (Activo != null) {
+      // para evitar error de null.ToString()
       params = params.append("Activo", Activo.toString());
     }
     params = params.append("Pagina", Pagina.toString());
@@ -36,11 +37,11 @@ export class ArticulosService {
     return this.httpClient.get(this.resourceUrl + Id);
   }
 
-  post(obj:Articulo) {
+  post(obj: Articulo) {
     return this.httpClient.post(this.resourceUrl, obj);
   }
 
-  put(Id: number, obj:Articulo) {
+  put(Id: number, obj: Articulo) {
     return this.httpClient.put(this.resourceUrl + Id, obj);
   }
 
