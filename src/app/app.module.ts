@@ -17,6 +17,7 @@ import { ArticulosFamiliasComponent } from "./components/articulos-familias/arti
 import { ModalDialogComponent } from "./components/modal-dialog/modal-dialog.component";
 import { ServiciosComponent } from "./components/servicios/servicios.component";
 import { ServiciosService } from "./services/servicios.service";
+import { MockServiciosService } from './services/mock-servicios.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { ServiciosService } from "./services/servicios.service";
   entryComponents: [ModalDialogComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
-    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true, providers: [MockServiciosService] }
   ],
   bootstrap: [AppComponent]
 })

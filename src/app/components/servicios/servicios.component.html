@@ -1,17 +1,18 @@
 <div class="container">
-	<h3>{{Titulo}}</h3>
-	<div>
+
+	<div *ngIf="AccionABMC == 'L'">
+		<h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th class="text-center">idservicio</th>
-					<th class="text-center">descripcion</th>
-					<th class="text-center">importe</th>
-					<th class="text-center">cantidadhoras</th>
+					<th class="text-center">Id de servicio</th>
+					<th class="text-center">Descripción</th>
+					<th class="text-center">Importe</th>
+					<th class="text-center">Cantidad de horas</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let servicio of Servi.Lista">
+				<tr *ngFor="let servicio of Servi">
 					<td>{{servicio.idservicio}}</td>
 					<td>{{servicio.descripcion | uppercase}}</td>
 					<td>{{servicio.importe}}</td>
@@ -19,5 +20,16 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+
+	<button type="button" *ngIf="AccionABMC==='L'" (click)="AccionABMC='A' "class="btn btn-outline-info">Nuevo servicio</button>
+
+
+	<div *ngIf="AccionABMC==='A'">
+		<h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
+		<form name="formAlta" [formGroup]="formAlta">
+
+		</form>
+		<button type="button" class="btn btn-outline-danger" (click)="AccionABMC='L'">Cancelar</button>
 	</div>
 </div>
