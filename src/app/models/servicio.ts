@@ -1,5 +1,5 @@
 export class Servicio {
-  Idservicio: number;
+  //Idservicio: number;
   Descripcion: string;
   Importe: number;
   Cantidadhoras: number;

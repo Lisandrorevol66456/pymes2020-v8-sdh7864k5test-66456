@@ -19,15 +19,15 @@ export class ServiciosService {
     this.resourceUrl = "https://bitgocba.duckdns.org/api/servicios/";
   }
   get(
-    IdServicio: number,
+    //IdServicio: number,
     Descripcion: string,
     Importe: number,
     Cantidadhoras: number
   ) {
     let param = new HttpParams();
-    if (IdServicio != null) {
-      param = param.append("IdServicio", IdServicio.toString());
-    }
+    // if (IdServicio != null) {
+    //   param = param.append("IdServicio", IdServicio.toString());
+    ///}
     if (Descripcion != null) {
       param = param.append("Descripcion", Descripcion);
     }
