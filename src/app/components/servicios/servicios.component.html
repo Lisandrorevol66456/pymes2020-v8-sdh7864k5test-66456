@@ -1,23 +1,23 @@
 <div class="container">
-  <h3>{{Titulo}}</h3>
-  <div>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th class="text-center">idservicio</th>
-          <th class="text-center">descripcion</th>
-          <th class="text-center">importe</th>
-          <th class="text-center">cantidadhoras</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let servicio of Servi">
-          <td>{{servicio.idservicio}}</td>
-          <td>{{servicio.descripcion | uppercase}}</td>
-          <td>{{servicio.importe}}</td>
-          <td>{{servicio.cantidadhoras}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+	<h3>{{Titulo}}</h3>
+	<div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="text-center">idservicio</th>
+					<th class="text-center">descripcion</th>
+					<th class="text-center">importe</th>
+					<th class="text-center">cantidadhoras</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let servicio of Servi.Lista">
+					<td>{{servicio.idservicio}}</td>
+					<td>{{servicio.descripcion | uppercase}}</td>
+					<td>{{servicio.importe}}</td>
+					<td>{{servicio.cantidadhoras}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

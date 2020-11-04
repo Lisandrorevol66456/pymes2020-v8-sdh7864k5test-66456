@@ -7,7 +7,7 @@ import { ServiciosService } from "../../services/servicios.service";
   styleUrls: ["./servicios.component.css"]
 })
 export class ServiciosComponent implements OnInit {
-  servicios: any;
+  servicios: any = [];
 
   constructor(private serviciosServices: ServiciosService) {}
 
