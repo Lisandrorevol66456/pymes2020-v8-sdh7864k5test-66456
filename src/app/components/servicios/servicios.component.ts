@@ -11,6 +11,7 @@ import { ModalDialogService } from "../../services/modal-dialog.service";
 export class ServiciosComponent implements OnInit {
   Titulo = "Servicios";
   Servicios: any = [];
+  Lista: Servicio[] = [];
   TituloAccionABMC = {
     A: "(Agregar servicio)",
     B: "(Eliminar)",
@@ -43,10 +44,23 @@ export class ServiciosComponent implements OnInit {
 
   constructor(
     private serviciosServices: ServiciosService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private modalDialogService: ModalDialogService
   ) {}
 
   ngOnInit() {
+    this.FormReg = this.formBuilder.group({
+      Idservicio: [0],
+      Descripcion: [
+        "",
+        [Validators.required, Validators.minLength(4), Validators.maxLength(55)]
+      ],
+      Importe: [null, [Validators.required, Validators.pattern("[0-9]{1,7}")]],
+      Cantidadhoras: [
+        null,
+        [Validators.required, Validators.pattern("[0-9]{1,7}")]
+      ]
+    });
     this.GetServicios();
   }
   GetServicios() {
@@ -60,6 +74,33 @@ export class ServiciosComponent implements OnInit {
     this.FormReg.markAsUntouched();
   }
   Grabar() {
+    this.submitted = true;
+    // verificar que los validadores esten OK
+    if (this.FormReg.invalid) {
+      return;
+    } // agregar post
+    const itemCopy = { ...this.FormReg.value };
+    if (itemCopy.IdArticulo == 0 || itemCopy.IdArticulo == null) {
+      itemCopy.IdArticulo = 0;
+      this.serviciosServices.post(itemCopy).subscribe((res: any) => {
+        this.Cancelar();
+        this.modalDialogService.Alert("Registro agregado correctamente.");
+      });
+    } else {
+      // modificar put
+      this.serviciosServices
+        .put(itemCopy.IdArticulo, itemCopy)
+        .subscribe((res: any) => {
+          this.Cancelar();
+          this.modalDialogService.Alert("Registro modificado correctamente.");
+        });
+    }
+
     this.modalDialogService.Alert("Registro modificado correctamente.");
+    this.AccionABMC = "L";
+  }
+  Cancelar() {
+    //this.modalDialogService.Alert("Seguro que desea cancelar?");
+    this.AccionABMC = "L";
   }
 }
