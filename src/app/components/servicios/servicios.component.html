@@ -1,7 +1,9 @@
+<h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
+
 <div class="container">
 
 	<div *ngIf="AccionABMC == 'L'">
-		<h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
+
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
@@ -22,14 +24,64 @@
 		</table>
 	</div>
 
-	<button type="button" *ngIf="AccionABMC==='L'" (click)="AccionABMC='A' "class="btn btn-outline-info">Nuevo servicio</button>
+	<button type="button" *ngIf="AccionABMC=='L'" (click)="Agregar()"
+  class="btn btn-outline-info"><span class="fas fa-plus"> </span>
+  Nuevo servicio
+  </button>
 
 
-	<div *ngIf="AccionABMC==='A'">
-		<h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
+	<div *ngIf="AccionABMC=='A'">
+
 		<form name="formAlta" [formGroup]="formAlta">
+			<!-- para campo descripcion -->
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2 col-sm-offset-2" for="Descripcion">Descripción <span
+                    class="text-danger">*</span></label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" formControlName="Descripcion"
+         [ngClass]="{'is-invalid': (FormReg.controls.Nombre.touched || submitted)  
+            && FormReg.controls.Descripcion.errors}" />
+
+					<span class="text-danger" *ngIf="(FormReg.controls.Descripcion.touched || submitted) 
+                        && FormReg.controls.Descripcion.errors?.required">
+                    Dato requerido.
+                </span>
+					<span class="text-danger" *ngIf="(FormReg.controls.Descripcion.touched || submitted) 
+                       && (FormReg.controls.Descripcion.errors?.minlength || FormReg.controls.Descripcion.errors?.maxlength) ">
+                    Dato texto, 4 a 55 caracteres.
+                </span>
+
+				</div>
+			</div>
+			<!-- para campo importe -->
+			<div class="form-group row">
+				<label class="col-form-label col-sm-2 col-sm-offset-2" for="importe">importe <span
+                    class="text-danger">*</span></label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" formControlName="Nombre"
+         [ngClass]="{'is-invalid': (FormReg.controls.Nombre.touched || submitted)  
+            && FormReg.controls.Nombre.errors}" />
+
+					<span class="text-danger" *ngIf="(FormReg.controls.Nombre.touched || submitted) 
+                        && FormReg.controls.Nombre.errors?.required">
+                    Dato requerido.
+                </span>
+					<span class="text-danger" *ngIf="(FormReg.controls.Nombre.touched || submitted) 
+                       && (FormReg.controls.Nombre.errors?.minlength || FormReg.controls.Nombre.errors?.maxlength) ">
+                    Dato texto, 4 a 55 caracteres.
+                </span>
+
+				</div>
+			</div>
 
 		</form>
-		<button type="button" class="btn btn-outline-danger" (click)="AccionABMC='L'">Cancelar</button>
+		<div class="row">
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-outline-success" (click)="Grabar()"><span class="fas fa-plus"> </span>Grabar</button>
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-outline-danger" (click)="AccionABMC='L'">Cancelar</button>
+			</div>
+		</div>
 	</div>
 </div>

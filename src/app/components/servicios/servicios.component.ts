@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Servicio } from "../../models/Servicio";
 import { ServiciosService } from "../../services/servicios.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ModalDialogService } from "../../services/modal-dialog.service";
 @Component({
   selector: "app-servicios",
   templateUrl: "./servicios.component.html",
@@ -50,5 +51,15 @@ export class ServiciosComponent implements OnInit {
   }
   GetServicios() {
     this.serviciosServices.get().subscribe(data => (this.Servicios = data));
+  }
+  Agregar() {
+    this.AccionABMC = "A";
+    this.FormReg.reset();
+    this.submitted = false;
+    //this.FormReg.markAsPristine();
+    this.FormReg.markAsUntouched();
+  }
+  Grabar() {
+    this.modalDialogService.Alert("Registro modificado correctamente.");
   }
 }
