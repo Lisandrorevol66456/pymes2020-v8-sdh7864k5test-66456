@@ -7,7 +7,8 @@ import { ServiciosService } from "../../services/servicios.service";
   styleUrls: ["./servicios.component.css"]
 })
 export class ServiciosComponent implements OnInit {
-  servicios: any = [];
+  Titulo = "Servicios";
+  Servicios: any = [];
 
   constructor(private serviciosServices: ServiciosService) {}
 
@@ -15,7 +16,7 @@ export class ServiciosComponent implements OnInit {
     this.GetServicios();
   }
   GetServicios() {
-    this.serviciosServices.get().subscribe(data => (this.servicios = data));
+    this.serviciosServices.get().subscribe(data => (this.Servicios = data));
   }
 }
 

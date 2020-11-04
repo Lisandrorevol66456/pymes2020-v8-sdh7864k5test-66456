@@ -18,27 +18,30 @@ export class ServiciosService {
     //this.resourceUrl = "https://pavii.ddns.net/api/servicios/";
     this.resourceUrl = "https://bitgocba.duckdns.org/api/servicios/";
   }
-  get(
-    IdServicio: number,
-    Descripcion: string,
-    Importe: number,
-    Cantidadhoras: number
-  ) {
-    let params = new HttpParams();
-    if (IdServicio != null) {
-      params = params.append("IdServicio", IdServicio.toString());
-    }
-    if (Descripcion != null) {
-      params = params.append("Descripcion", Descripcion);
-    }
-    if (Importe != null) {
-      params = params.append("Importe", Importe.toString());
-    }
-    if (Cantidadhoras != null) {
-      params = params.append("Cantidadhoras", Cantidadhoras.toString());
-    }
-    return this.httpClient.get(this.resourceUrl, { params: params });
+  get() {
+    return this.httpClient.get(this.resourceUrl);
   }
+  // get(
+  //   IdServicio: number,
+  //   Descripcion: string,
+  //   Importe: number,
+  //   Cantidadhoras: number
+  // ) {
+  //   let params = new HttpParams();
+  //   if (IdServicio != null) {
+  //     params = params.append("IdServicio", IdServicio.toString());
+  //   }
+  //   if (Descripcion != null) {
+  //     params = params.append("Descripcion", Descripcion);
+  //   }
+  //   if (Importe != null) {
+  //     params = params.append("Importe", Importe.toString());
+  //   }
+  //   if (Cantidadhoras != null) {
+  //     params = params.append("Cantidadhoras", Cantidadhoras.toString());
+  //   }
+  //   return this.httpClient.get(this.resourceUrl, { params: params });
+  // }
 
   getById(Id: number) {
     return this.httpClient.get(this.resourceUrl + Id);
