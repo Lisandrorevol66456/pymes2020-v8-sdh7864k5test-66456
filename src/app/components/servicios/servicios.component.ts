@@ -90,7 +90,7 @@ export class ServiciosComponent implements OnInit {
     this.modalDialogService.Alert("Registro modificado correctamente.");
     this.AccionABMC = "L";
   }
-  uscar() {
+  Buscar() {
     this.SinBusquedasRealizadas = false;
     this.serviciosServices
       .get(

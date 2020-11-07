@@ -1,4 +1,4 @@
-<h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
+<h2>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h2>
 
 <!-- Formulario Filtro de busqueda, se ve cuando la accion es Listado(busqueda/listado)-->
 <form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light" *ngIf="AccionABMC == 'L'">
@@ -31,7 +31,7 @@
 
 <!-- Tabla de resutados de busqueda -->
 <div class="container">
-	<div *ngIf="AccionABMC == 'L'">
+	<div *ngIf="AccionABMC == 'C'">
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
