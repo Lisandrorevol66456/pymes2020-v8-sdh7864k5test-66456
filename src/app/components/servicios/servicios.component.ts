@@ -3,6 +3,8 @@ import { Servicio } from "../../models/Servicio";
 import { ServiciosService } from "../../services/servicios.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalDialogService } from "../../services/modal-dialog.service";
+
+
 @Component({
   selector: "app-servicios",
   templateUrl: "./servicios.component.html",
@@ -25,20 +27,6 @@ export class ServiciosComponent implements OnInit {
     RD: " Revisar los datos ingresados..."
   };
 
-  //Lista: Servicio[] = [];
-  RegistrosTotal: number;
-  SinBusquedasRealizadas = true;
-
-  Pagina = 1; // inicia pagina 1
-
-  // opciones del combo activo
-  OpcionesActivo = [
-    { Id: null, Nombre: "" },
-    { Id: true, Nombre: "SI" },
-    { Id: false, Nombre: "NO" }
-  ];
-
-  FormFiltro: FormGroup;
   FormReg: FormGroup;
   submitted = false;
 
@@ -51,15 +39,9 @@ export class ServiciosComponent implements OnInit {
   ngOnInit() {
     this.FormReg = this.formBuilder.group({
       Idservicio: [0],
-      Descripcion: [
-        "",
-        [Validators.required, Validators.minLength(4), Validators.maxLength(55)]
-      ],
+      Descripcion: ["",[Validators.required, Validators.minLength(4), Validators.maxLength(55)]],
       Importe: [null, [Validators.required, Validators.pattern("[0-9]{1,7}")]],
-      Cantidadhoras: [
-        null,
-        [Validators.required, Validators.pattern("[0-9]{1,7}")]
-      ]
+      Cantidadhoras: [null,[Validators.required, Validators.pattern("[0-9]{1,7}")]]
     });
     this.GetServicios();
   }
@@ -71,7 +53,7 @@ export class ServiciosComponent implements OnInit {
     this.FormReg.reset();
     this.submitted = false;
     //this.FormReg.markAsPristine();
-    this.FormReg.markAsUntouched();
+   this.FormReg.markAsUntouched();
   }
   Grabar() {
     this.submitted = true;
@@ -80,8 +62,8 @@ export class ServiciosComponent implements OnInit {
       return;
     } // agregar post
     const itemCopy = { ...this.FormReg.value };
-    if (itemCopy.IdArticulo == 0 || itemCopy.IdArticulo == null) {
-      itemCopy.IdArticulo = 0;
+    if (itemCopy.Idservicio == 0 || itemCopy.Idservicio == null) {
+      itemCopy.Idservicio = 0;
       this.serviciosServices.post(itemCopy).subscribe((res: any) => {
         this.Cancelar();
         this.modalDialogService.Alert("Registro agregado correctamente.");
@@ -89,7 +71,7 @@ export class ServiciosComponent implements OnInit {
     } else {
       // modificar put
       this.serviciosServices
-        .put(itemCopy.IdArticulo, itemCopy)
+        .put(itemCopy.Idservicio, itemCopy)
         .subscribe((res: any) => {
           this.Cancelar();
           this.modalDialogService.Alert("Registro modificado correctamente.");
