@@ -39,8 +39,8 @@ export class ServiciosComponent implements OnInit {
 
   ngOnInit() {
     this.FormFiltro = this.formBuilder.group({
-      Nombre: [""],
-      Activo: [null]
+      Descripcion: [""],
+      Importe: [null]
     });
     this.FormReg = this.formBuilder.group({
       Idservicio: [0],

@@ -16,7 +16,8 @@ export class ServiciosService {
   constructor(private httpClient: HttpClient) {
     // la barra al final del resourse url es importante para los metodos que concatenan el id del recurso (GetById, Put)
     //this.resourceUrl = "https://pavii.ddns.net/api/servicios/";
-    this.resourceUrl = "https://bitgocba.duckdns.org/api/servicios/";
+    //this.resourceUrl = "https://bitgocba.duckdns.org/api/servicios/";
+    this.resourceUrl="http://localhost:3000/servicios/"
   }
   get(Descripcion: string, Importe: number, Cantidadhoras: number) {
     let params = new HttpParams();
