@@ -4,7 +4,6 @@ import { ServiciosService } from "../../services/servicios.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalDialogService } from "../../services/modal-dialog.service";
 
-
 @Component({
   selector: "app-servicios",
   templateUrl: "./servicios.component.html",
@@ -14,6 +13,7 @@ export class ServiciosComponent implements OnInit {
   Titulo = "Servicios";
   Servicios: any = [];
   Lista: Servicio[] = [];
+  RegistrosTotal: number;
   TituloAccionABMC = {
     A: "(Agregar servicio)",
     B: "(Eliminar)",
@@ -39,9 +39,15 @@ export class ServiciosComponent implements OnInit {
   ngOnInit() {
     this.FormReg = this.formBuilder.group({
       Idservicio: [0],
-      Descripcion: ["",[Validators.required, Validators.minLength(4), Validators.maxLength(55)]],
+      Descripcion: [
+        "",
+        [Validators.required, Validators.minLength(4), Validators.maxLength(55)]
+      ],
       Importe: [null, [Validators.required, Validators.pattern("[0-9]{1,7}")]],
-      Cantidadhoras: [null,[Validators.required, Validators.pattern("[0-9]{1,7}")]]
+      Cantidadhoras: [
+        null,
+        [Validators.required, Validators.pattern("[0-9]{1,7}")]
+      ]
     });
     this.GetServicios();
   }
@@ -53,7 +59,7 @@ export class ServiciosComponent implements OnInit {
     this.FormReg.reset();
     this.submitted = false;
     //this.FormReg.markAsPristine();
-   this.FormReg.markAsUntouched();
+    this.FormReg.markAsUntouched();
   }
   Grabar() {
     this.submitted = true;
@@ -65,7 +71,8 @@ export class ServiciosComponent implements OnInit {
     if (itemCopy.Idservicio == 0 || itemCopy.Idservicio == null) {
       itemCopy.Idservicio = 0;
       this.serviciosServices.post(itemCopy).subscribe((res: any) => {
-        this.Cancelar();
+        this.Lista = res.Lista;
+        this.RegistrosTotal = res.RegistrosTotal;
         this.modalDialogService.Alert("Registro agregado correctamente.");
       });
     } else {
@@ -73,7 +80,8 @@ export class ServiciosComponent implements OnInit {
       this.serviciosServices
         .put(itemCopy.Idservicio, itemCopy)
         .subscribe((res: any) => {
-          this.Cancelar();
+          this.Lista = res.Lista;
+          this.RegistrosTotal = res.RegistrosTotal;
           this.modalDialogService.Alert("Registro modificado correctamente.");
         });
     }
