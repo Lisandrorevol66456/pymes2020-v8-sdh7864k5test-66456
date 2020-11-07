@@ -57,9 +57,9 @@ export class ServiciosComponent implements OnInit {
     this.GetServicios();
   }
   GetServicios() {
-    this.serviciosServices.get().subscribe((res: any) => {
-      this.Servicios = res;
-      //this.RegistrosTotal = res.RegistrosTotal;
+    this.serviciosServices.get().subscribe((res: Servicio[]) => {
+      this.Lista = res;
+      
     });
   }
   Agregar() {
