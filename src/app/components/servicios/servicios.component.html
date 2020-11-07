@@ -2,40 +2,49 @@
 
 <!-- Formulario Filtro de busqueda, se ve cuando la accion es Listado(busqueda/listado)-->
 <form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light" *ngIf="AccionABMC == 'L'">
-
-	<!-- Botones -->
-	<div class="row justify-content-center">
-		<button type="button" class="btn btn-primary" (click)="Buscar()">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-2 col-sm-offset-1">
+            Descripcion:
+        </label>
+		<div class="col-sm-3">
+			<input type="text" name="Descripcion" class="form-control" formControlName="Descripcion" maxlength="55"/>
+        </div>
+			<label class="col-form-label col-sm-2  text-left">
+            Importe:
+        </label>
+			<div class="col-sm-3">
+				<input type="text" name="Importe" class="form-control" formControlName="Importe" maxlength="7">
+			</div>
+			</div>
+			<!-- Botones -->
+			<div class="row justify-content-center">
+				<button type="button" class="btn btn-primary" (click)="Buscar()">
             <span class="fas fa-search"> </span> Consultar
         </button>
-		&nbsp;
-		<button type="button" class="btn btn-primary" (click)="Agregar()">
+				&nbsp;
+				<button type="button" class="btn btn-primary" (click)="Agregar()">
             <span class="fas fa-plus"> </span> 
             Agregar
         </button>
-	</div>
+			</div>
 </form>
 
-<!-- Tabla de resutados de busqueda y Paginador-->
+<!-- Tabla de resutados de busqueda -->
 <div class="container">
-
 	<div *ngIf="AccionABMC == 'L'">
-
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th class="text-center">Id de servicio</th>
 					<th class="text-center">Descripción</th>
 					<th class="text-center">Importe</th>
 					<th class="text-center">Cantidad de horas</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let servicio of Servi">
-					<td>{{servicio.idservicio}}</td>
-					<td>{{servicio.descripcion | uppercase}}</td>
-					<td>{{servicio.importe}}</td>
-					<td>{{servicio.cantidadhoras}}</td>
+				<tr *ngFor="let dto of Lista">
+					<td>{{dto.descripcion | uppercase}}</td>
+					<td>{{dto.importe}}</td>
+					<td>{{dto.cantidadhoras}}</td>
 				</tr>
 			</tbody>
 		</table>

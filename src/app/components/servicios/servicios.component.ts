@@ -11,6 +11,7 @@ import { ModalDialogService } from "../../services/modal-dialog.service";
 })
 export class ServiciosComponent implements OnInit {
   Titulo = "Servicios";
+  SinBusquedasRealizadas = true;
   Servicios: any = [];
   Lista: Servicio[] = [];
   RegistrosTotal: number;
@@ -26,7 +27,7 @@ export class ServiciosComponent implements OnInit {
     SD: " No se encontraron registros...",
     RD: " Revisar los datos ingresados..."
   };
-
+  FormFiltro: FormGroup;
   FormReg: FormGroup;
   submitted = false;
 
@@ -88,6 +89,18 @@ export class ServiciosComponent implements OnInit {
 
     this.modalDialogService.Alert("Registro modificado correctamente.");
     this.AccionABMC = "L";
+  }
+  uscar() {
+    this.SinBusquedasRealizadas = false;
+    this.serviciosServices
+      .get(
+        this.FormFiltro.value.Descripcion,
+        
+      )
+      .subscribe((res: any) => {
+        this.Lista = res.Lista;
+        this.RegistrosTotal = res.RegistrosTotal;
+      });
   }
   Cancelar() {
     //this.modalDialogService.Alert("Seguro que desea cancelar?");
