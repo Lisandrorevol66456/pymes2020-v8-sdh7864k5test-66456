@@ -91,16 +91,20 @@ export class ServiciosComponent implements OnInit {
     this.AccionABMC = "L";
   }
   Buscar() {
+    
     this.SinBusquedasRealizadas = false;
     this.serviciosServices
       .get(
-        this.FormFiltro.value.Descripcion,
+        
         
       )
       .subscribe((res: any) => {
         this.Lista = res.Lista;
         this.RegistrosTotal = res.RegistrosTotal;
       });
+  }
+  ImprimirListado() {
+    this.modalDialogService.Alert('Sin desarrollar...');
   }
   Cancelar() {
     //this.modalDialogService.Alert("Seguro que desea cancelar?");

@@ -18,6 +18,11 @@ export class ArticulosService {
     //this.resourceUrl = "https://pavii.ddns.net/api/articulos/";
     this.resourceUrl = "https://bitgocba.duckdns.org/api/articulos/";
   }
+  // his.articulosService
+  //     .get(this.FormFiltro.value.Nombre, this.FormFiltro.value.Activo, this.Pagina)
+  //     .subscribe((res: any) => {
+  //       this.Lista = res.Lista;
+  //       this.RegistrosTotal = res.RegistrosTotal;
 
   get(Nombre: string, Activo: boolean, Pagina: number) {
     let params = new HttpParams();
