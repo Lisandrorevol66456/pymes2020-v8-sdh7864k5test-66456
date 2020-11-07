@@ -21,28 +21,7 @@ export class ServiciosService {
   get() {
     return this.httpClient.get(this.resourceUrl);
   }
-  // get(
-  //   IdServicio: number,
-  //   Descripcion: string,
-  //   Importe: number,
-  //   Cantidadhoras: number
-  // ) {
-  //   let params = new HttpParams();
-  //   if (IdServicio != null) {
-  //     params = params.append("IdServicio", IdServicio.toString());
-  //   }
-  //   if (Descripcion != null) {
-  //     params = params.append("Descripcion", Descripcion);
-  //   }
-  //   if (Importe != null) {
-  //     params = params.append("Importe", Importe.toString());
-  //   }
-  //   if (Cantidadhoras != null) {
-  //     params = params.append("Cantidadhoras", Cantidadhoras.toString());
-  //   }
-  //   return this.httpClient.get(this.resourceUrl, { params: params });
-  // }
-
+  
   getById(Id: number) {
     return this.httpClient.get(this.resourceUrl + Id);
   }
