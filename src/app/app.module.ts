@@ -46,7 +46,7 @@ import { MockServiciosService } from './services/mock-servicios.service';
   entryComponents: [ModalDialogComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
-    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true, providers: [MockServiciosService] }
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true, }
   ],
   bootstrap: [AppComponent]
 })

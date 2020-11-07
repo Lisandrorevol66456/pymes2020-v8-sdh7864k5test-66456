@@ -51,7 +51,7 @@
 </div>
 
 <!--No se encontraron registros-->
-<div id="divMsjFormFiltro" class="alert alert-info" *ngIf="AccionABMC == 'L'">
+<div id="divMsjFormFiltro" class="alert alert-info" *ngIf="AccionABMC == 'L' && !SinBusquedasRealizadas && Lista?.length== 0">
 	<span class="fas fa-exclamation-sign"></span>{{Mensajes['SD']}}
 	<!-- texto: No se encontraron registros -->
 </div>

@@ -18,10 +18,24 @@ export class ServiciosService {
     //this.resourceUrl = "https://pavii.ddns.net/api/servicios/";
     this.resourceUrl = "https://bitgocba.duckdns.org/api/servicios/";
   }
-  get() {
-    return this.httpClient.get(this.resourceUrl);
+  get(Descripcion: string, Importe: number, Cantidadhoras: number) {
+    let params = new HttpParams();
+    if (Descripcion != null) {
+      params = params.append("Descripcion", Descripcion);
+    }
+    if (Cantidadhoras != null) {
+      // para evitar error de null.ToString()
+      params = params.append("Activo", Cantidadhoras.toString());
+    }
+    if (Importe != null) {
+      params = params.append("Importe", Importe.toString());
+    }
+    return this.httpClient.get(this.resourceUrl, { params: params });
   }
-  
+  // get() {
+  //   return this.httpClient.get(this.resourceUrl);
+  // }
+
   getById(Id: number) {
     return this.httpClient.get(this.resourceUrl + Id);
   }

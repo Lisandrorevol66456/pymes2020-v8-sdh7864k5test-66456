@@ -38,6 +38,10 @@ export class ServiciosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.FormFiltro = this.formBuilder.group({
+      Nombre: [""],
+      Activo: [null]
+    });
     this.FormReg = this.formBuilder.group({
       Idservicio: [0],
       Descripcion: [
@@ -50,10 +54,14 @@ export class ServiciosComponent implements OnInit {
         [Validators.required, Validators.pattern("[0-9]{1,7}")]
       ]
     });
-    this.GetServicios();
+   this.GetServicios();
   }
   GetServicios() {
-    this.serviciosServices.get().subscribe(data => (this.Servicios = data));
+    this.serviciosServices.get(this.FormFiltro.value.Descripcion, this.FormFiltro.value.Importe, this.FormFiltro.value.Cantidadhoras)
+      .subscribe((res: any) => {
+        this.Lista = res.Lista;
+        this.RegistrosTotal = res.RegistrosTotal;
+      });
   }
   Agregar() {
     this.AccionABMC = "A";
@@ -91,20 +99,11 @@ export class ServiciosComponent implements OnInit {
     this.AccionABMC = "L";
   }
   Buscar() {
-    
     this.SinBusquedasRealizadas = false;
-    this.serviciosServices
-      .get(
-        
-        
-      )
-      .subscribe((res: any) => {
-        this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
-      });
+    this.GetServicios();
   }
   ImprimirListado() {
-    this.modalDialogService.Alert('Sin desarrollar...');
+    this.modalDialogService.Alert("Sin desarrollar...");
   }
   Cancelar() {
     //this.modalDialogService.Alert("Seguro que desea cancelar?");
