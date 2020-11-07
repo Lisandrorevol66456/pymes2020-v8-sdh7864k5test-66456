@@ -54,14 +54,13 @@ export class ServiciosComponent implements OnInit {
         [Validators.required, Validators.pattern("[0-9]{1,7}")]
       ]
     });
-   this.GetServicios();
+    this.GetServicios();
   }
   GetServicios() {
-    this.serviciosServices.get(this.FormFiltro.value.Descripcion, this.FormFiltro.value.Importe, this.FormFiltro.value.Cantidadhoras)
-      .subscribe((res: any) => {
-        this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
-      });
+    this.serviciosServices.get().subscribe((res: any) => {
+      this.Servicios = res;
+      //this.RegistrosTotal = res.RegistrosTotal;
+    });
   }
   Agregar() {
     this.AccionABMC = "A";
