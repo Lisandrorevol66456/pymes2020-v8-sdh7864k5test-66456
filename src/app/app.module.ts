@@ -18,6 +18,8 @@ import { ModalDialogComponent } from "./components/modal-dialog/modal-dialog.com
 import { ServiciosComponent } from "./components/servicios/servicios.component";
 import { ServiciosService } from "./services/servicios.service";
 import { MockServiciosService } from './services/mock-servicios.service';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { ClientesService } from './services/clientes.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MockServiciosService } from './services/mock-servicios.service';
     ArticulosComponent,
     ArticulosFamiliasComponent,
     ModalDialogComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { MockServiciosService } from './services/mock-servicios.service';
       { path: "inicio", component: InicioComponent },
       { path: "articulos", component: ArticulosComponent },
       { path: "articulosfamilias", component: ArticulosFamiliasComponent },
-      { path: "servicios", component: ServiciosComponent }
+      { path: "servicios", component: ServiciosComponent },
+      {path: "clientes", component:ClientesComponent}
     ]),
     NgbPaginationModule,
     NgbModalModule
