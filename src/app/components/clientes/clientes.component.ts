@@ -54,31 +54,20 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {
     this.FormFiltro = this.formBuilder.group({
       Nombre: [""],
-      Activo: [null]
+      TieneTrabajo: [null]
     });
     this.FormReg = this.formBuilder.group({
-      IdArticulo: [0],
+      IdCliente: [0],
       Nombre: [
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(55)]
       ],
-      Precio: [null, [Validators.required, Validators.pattern("[0-9]{1,7}")]],
-      Stock: [null, [Validators.required, Validators.pattern("[0-9]{1,7}")]],
-      CodigoDeBarra: [
-        "",
-        [Validators.required, Validators.pattern("[0-9]{13}")]
+      NumeroDocumento: [
+        null,
+        [Validators.required, Validators.pattern("[0-9]{7,10}")]
       ],
-      IdArticuloFamilia: ["", [Validators.required]],
-      FechaAlta: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern(
-            "(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[012])[-/](19|20)[0-9]{2}"
-          )
-        ]
-      ],
-      Activo: [true]
+
+      TieneTrabajo: [true]
     });
 
     this.GetClientes();
