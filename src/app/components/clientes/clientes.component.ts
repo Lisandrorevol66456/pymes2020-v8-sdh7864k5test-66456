@@ -102,8 +102,7 @@ export class ClientesComponent implements OnInit {
   Buscar() {
     this.SinBusquedasRealizadas = false;
     this.clientesService
-      .get(
-        this.FormFiltro.value.Nombre,
+      .getBuscar(
         this.FormFiltro.value.NumeroDocumento,
         this.FormFiltro.value.TieneTrabajo
       )
