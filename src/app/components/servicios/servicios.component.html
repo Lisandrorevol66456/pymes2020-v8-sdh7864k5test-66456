@@ -43,7 +43,7 @@
 		<tbody>
 			<tr *ngFor="let dto of Lista">
 				<td>{{dto.Descripcion | uppercase}}</td>
-				<td>{{dto.Importe}}</td>
+				<td>{{dto.Importe | currency:'$'}}</td>
 				<td>{{dto.Cantidadhoras}}</td>
 			</tr>
 		</tbody>

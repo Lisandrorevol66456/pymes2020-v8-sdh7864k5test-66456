@@ -80,7 +80,7 @@ export class ServiciosComponent implements OnInit {
       itemCopy.Idservicio = 0;
       this.serviciosServices.post(itemCopy).subscribe((res: any) => {
         this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
+        //this.RegistrosTotal = res.RegistrosTotal;
         this.modalDialogService.Alert("Registro agregado correctamente.");
       });
     } else {
