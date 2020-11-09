@@ -97,7 +97,7 @@ export class ClientesComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
+        //this.RegistrosTotal = res.RegistrosTotal;
       });
   }
 

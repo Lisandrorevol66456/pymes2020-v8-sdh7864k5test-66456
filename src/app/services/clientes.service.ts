@@ -18,16 +18,17 @@ export class ClientesService {
     //this.resourceUrl = "https://pavii.ddns.net/api/articulos/";
     //this.resourceUrl = "https://bitgocba.duckdns.org/api/articulos/";
     this.resourceUrl = "https://demo3151356.mockable.io/clientes";
+    //this.resourceUrl="http://localhost:3000/Clientes";
   }
 
   getBuscar(NumeroDocumento: number, TieneTrabajo: boolean) {
     let params = new HttpParams();
+    if (NumeroDocumento != null) {
+      params = params.append("NumeroDocumento", NumeroDocumento.toString());
+    }
     if (TieneTrabajo != null) {
       // para evitar error de null.ToString()
       params = params.append("TieneTrabajo", TieneTrabajo.toString());
-    }
-    if (NumeroDocumento != null) {
-      params = params.append("NumeroDocumento", NumeroDocumento.toString());
     }
 
     return this.httpClient.get(this.resourceUrl, { params: params });
