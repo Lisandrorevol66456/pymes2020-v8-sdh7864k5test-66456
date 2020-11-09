@@ -97,7 +97,7 @@ export class ClientesComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.Lista = res.Lista;
-        //this.RegistrosTotal = res.RegistrosTotal;
+        this.RegistrosTotal = res.RegistrosTotal;
       });
   }
 
@@ -105,14 +105,8 @@ export class ClientesComponent implements OnInit {
   BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
 
-    this.clientesService.getById(Dto.IdArticulo).subscribe((res: any) => {
+    this.clientesService.getById(Dto.IdCliente).subscribe((res: any) => {
       this.FormReg.patchValue(res);
-
-      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = res.FechaAlta.substr(0, 10).split("-");
-      this.FormReg.controls.FechaAlta.patchValue(
-        arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0]
-      );
 
       this.AccionABMC = AccionABMC;
     });
@@ -147,18 +141,9 @@ export class ClientesComponent implements OnInit {
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
     const itemCopy = { ...this.FormReg.value };
 
-    //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.FechaAlta.substr(0, 10).split("/");
-    if (arrFecha.length == 3)
-      itemCopy.FechaAlta = new Date(
-        arrFecha[2],
-        arrFecha[1] - 1,
-        arrFecha[0]
-      ).toISOString();
-
     // agregar post
-    if (itemCopy.IdArticulo == 0 || itemCopy.IdArticulo == null) {
-      itemCopy.IdArticulo = 0;
+    if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
+      itemCopy.IdCliente = 0;
       this.clientesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
@@ -167,7 +152,7 @@ export class ClientesComponent implements OnInit {
     } else {
       // modificar put
       this.clientesService
-        .put(itemCopy.IdArticulo, itemCopy)
+        .put(itemCopy.IdCliente, itemCopy)
         .subscribe((res: any) => {
           this.Volver();
           this.modalDialogService.Alert("Registro modificado correctamente.");
@@ -187,7 +172,7 @@ export class ClientesComponent implements OnInit {
       undefined,
       () =>
         this.clientesService
-          .delete(Dto.IdArticulo)
+          .delete(Dto.IdCliente)
           .subscribe((res: any) => this.Buscar()),
       null
     );
