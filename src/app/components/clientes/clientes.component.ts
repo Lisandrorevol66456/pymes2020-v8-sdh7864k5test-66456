@@ -8,9 +8,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalDialogService } from "../../services/modal-dialog.service";
 
 @Component({
-  selector: "app-articulos",
-  templateUrl: "./articulos.component.html",
-  styleUrls: ["./articulos.component.css"]
+  selector: "app-clientes",
+  templateUrl: "./clientes.component.html",
+  styleUrls: ["./clientes.component.css"]
 })
 export class ClientesComponent implements OnInit {
   Titulo = "Clientes";
@@ -48,9 +48,6 @@ export class ClientesComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private clientesService: ClientesService,
-    private articulosFamiliasService: MockArticulosFamiliasService,
-    //private articulosService: ArticulosService,
-    //private articulosFamiliasService: ArticulosFamiliasService,
     private modalDialogService: ModalDialogService
   ) {}
 
@@ -84,12 +81,12 @@ export class ClientesComponent implements OnInit {
       Activo: [true]
     });
 
-    this.GetFamiliasArticulos();
+    this.GetClientes();
   }
 
-  GetFamiliasArticulos() {
-    this.articulosFamiliasService.get().subscribe((res: ArticuloFamilia[]) => {
-      this.Familias = res;
+  GetClientes() {
+    this.clientesService.get().subscribe((res: Cliente[]) => {
+      this.Lista = res;
     });
   }
 
@@ -217,11 +214,11 @@ export class ClientesComponent implements OnInit {
     this.modalDialogService.Alert("Sin desarrollar...");
   }
 
-  GetArticuloFamiliaNombre(Id) {
-    var ArticuloFamilia = this.Familias.filter(
-      x => x.IdArticuloFamilia === Id
-    )[0];
-    if (ArticuloFamilia) return ArticuloFamilia.Nombre;
-    else return "";
-  }
+  // GetArticuloFamiliaNombre(Id) {
+  //   var ArticuloFamilia = this.Familias.filter(
+  //     x => x.IdArticuloFamilia === Id
+  //   )[0];
+  //   if (ArticuloFamilia) return ArticuloFamilia.Nombre;
+  //   else return "";
+  // }
 }

@@ -20,20 +20,23 @@ export class ClientesService {
     this.resourceUrl = "http://demo3151356.mockable.io/clientes";
   }
 
-  get(Nombre: string, NumeroDocumento: number, TieneTrabajo: boolean) {
-    let params = new HttpParams();
-    if (Nombre != null) {
-      params = params.append("Nombre", Nombre);
-    }
-    if (TieneTrabajo != null) {
-      // para evitar error de null.ToString()
-      params = params.append("TieneTrabajo", TieneTrabajo.toString());
-    }
-    if (NumeroDocumento != null) {
-      params = params.append("NumeroDocumento", NumeroDocumento.toString());
-    }
+  // getBuscar(Nombre: string, NumeroDocumento: number, TieneTrabajo: boolean) {
+  //   let params = new HttpParams();
+  //   if (Nombre != null) {
+  //     params = params.append("Nombre", Nombre);
+  //   }
+  //   if (TieneTrabajo != null) {
+  //     // para evitar error de null.ToString()
+  //     params = params.append("TieneTrabajo", TieneTrabajo.toString());
+  //   }
+  //   if (NumeroDocumento != null) {
+  //     params = params.append("NumeroDocumento", NumeroDocumento.toString());
+  //   }
 
-    return this.httpClient.get(this.resourceUrl, { params: params });
+  //   return this.httpClient.get(this.resourceUrl, { params: params });
+  // }
+  get() {
+    return this.httpClient.get(this.resourceUrl);
   }
 
   getById(Id: number) {

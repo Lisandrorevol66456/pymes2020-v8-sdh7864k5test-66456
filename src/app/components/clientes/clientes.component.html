@@ -39,35 +39,16 @@
 		<thead>
 			<tr>
 				<th class="text-center">Nombre</th>
-				<th class="text-center">Precio</th>
-				<th class="text-center">Stock</th>
-				<th class="text-center">Fecha de Alta</th>
-				<th>Familia</th>
-				<th class="text-center">Activo</th>
-				<th class="text-center text-nowrap">Acciones</th>
-			</tr>
+				<th class="text-center">Numero de documento </th>
+				<th class="text-center">Tiene trabajo</th>
+				</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let dto of Lista">
 				<td>{{dto.Nombre | uppercase}}</td>
-        <td class="text-right">{{dto.Precio | currency:'$'}}</td>
-				<td class="text-right">{{dto.Stock}}</td>
-				<td>{{dto.FechaAlta| date:'dd/MM/yyyy'}}</td>
-				<td>{{GetArticuloFamiliaNombre(dto.IdArticuloFamilia)}}</td>
-				<td>{{dto.Activo ? 'SI' : 'NO'}}</td>
-				<td class="text-center text-nowrap">
-					<button type="button" class="btn btn-sm btn-outline-primary" title="Ver" (click)="Consultar(dto)">
-                    <span class="fas fa-eye"></span>
-                </button>
-					<button type="button" class="btn btn-sm btn-outline-primary" title="Modificar" (click)="Modificar(dto)">
-                    <span class="fas fa-pencil-alt"></span>
-                </button>
-					<button type="button" class="btn btn-sm btn-outline-{{ dto.Activo ? 'danger':'success'}}"
-                    title="{{dto.Activo ? 'Desactivar':'Activar'}}" (click)="ActivarDesactivar(dto)">
-                    <span class="fas fa-{{dto.Activo ? 'times':'check'}}"></span>
-                </button>
-				</td>
-			</tr>
+        <td class="text-right">{{dto.NumeroDocumento}}</td>
+				<td>{{dto.TieneTrabajo ? 'SI' : 'NO'}}</td>
+				</tr>
 		</tbody>
 	</table>
 	<!-- Paginador-->
