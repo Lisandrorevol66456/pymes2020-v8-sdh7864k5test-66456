@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Cliente } from "../../models/cliente";
-import { ArticuloFamilia } from "../../models/articulo-familia";
+
 import { MockArticulosService } from "../../services/mock-articulos.service";
-import { MockArticulosFamiliasService } from "../../services/mock-articulos-familias.service";
 import { ClientesService } from "../../services/clientes.service";
-import { ArticulosFamiliasService } from "../../services/articulos-familias.service";
+
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalDialogService } from "../../services/modal-dialog.service";
 
@@ -14,7 +13,7 @@ import { ModalDialogService } from "../../services/modal-dialog.service";
   styleUrls: ["./articulos.component.css"]
 })
 export class ClientesComponent implements OnInit {
-  Titulo = "Clientes"; 
+  Titulo = "Clientes";
   TituloAccionABMC = {
     A: "(Agregar)",
     B: "(Eliminar)",
@@ -30,7 +29,7 @@ export class ClientesComponent implements OnInit {
 
   Lista: Cliente[] = [];
   RegistrosTotal: number;
-  Familias: ArticuloFamilia[] = [];
+
   SinBusquedasRealizadas = true;
 
   Pagina = 1; // inicia pagina 1
@@ -106,7 +105,11 @@ export class ClientesComponent implements OnInit {
   Buscar() {
     this.SinBusquedasRealizadas = false;
     this.clientesService
-      .get(this.FormFiltro.value.Nombre, this.FormFiltro.value.NumeroDocumento,this.FormFiltro.value.TieneTrabajo)
+      .get(
+        this.FormFiltro.value.Nombre,
+        this.FormFiltro.value.NumeroDocumento,
+        this.FormFiltro.value.TieneTrabajo
+      )
       .subscribe((res: any) => {
         this.Lista = res.Lista;
         this.RegistrosTotal = res.RegistrosTotal;
@@ -137,7 +140,9 @@ export class ClientesComponent implements OnInit {
   // comienza la modificacion, luego la confirma con el metodo Grabar
   Modificar(Dto) {
     if (!Dto.Activo) {
-      this.modalDialogService.Alert('No puede modificarse un registro Inactivo.');
+      this.modalDialogService.Alert(
+        "No puede modificarse un registro Inactivo."
+      );
       return;
     }
     this.submitted = false;
@@ -150,7 +155,7 @@ export class ClientesComponent implements OnInit {
   Grabar() {
     this.submitted = true;
     // verificar que los validadores esten OK
-     if (this.FormReg.invalid) {
+    if (this.FormReg.invalid) {
       return;
     }
 
@@ -160,19 +165,18 @@ export class ClientesComponent implements OnInit {
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
     var arrFecha = itemCopy.FechaAlta.substr(0, 10).split("/");
     if (arrFecha.length == 3)
-      itemCopy.FechaAlta = 
-          new Date(
-            arrFecha[2],
-            arrFecha[1] - 1,
-            arrFecha[0]
-          ).toISOString();
+      itemCopy.FechaAlta = new Date(
+        arrFecha[2],
+        arrFecha[1] - 1,
+        arrFecha[0]
+      ).toISOString();
 
     // agregar post
     if (itemCopy.IdArticulo == 0 || itemCopy.IdArticulo == null) {
       itemCopy.IdArticulo = 0;
       this.clientesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
-        this.modalDialogService.Alert('Registro agregado correctamente.');
+        this.modalDialogService.Alert("Registro agregado correctamente.");
         this.Buscar();
       });
     } else {
@@ -181,13 +185,13 @@ export class ClientesComponent implements OnInit {
         .put(itemCopy.IdArticulo, itemCopy)
         .subscribe((res: any) => {
           this.Volver();
-          this.modalDialogService.Alert('Registro modificado correctamente.');
+          this.modalDialogService.Alert("Registro modificado correctamente.");
           this.Buscar();
         });
     }
   }
 
-// representa la baja logica 
+  // representa la baja logica
   ActivarDesactivar(Dto) {
     this.modalDialogService.Confirm(
       "Esta seguro de " +
@@ -197,11 +201,9 @@ export class ClientesComponent implements OnInit {
       undefined,
       undefined,
       () =>
-        this.clientesService  
+        this.clientesService
           .delete(Dto.IdArticulo)
-          .subscribe((res: any) => 
-            this.Buscar()
-          ),
+          .subscribe((res: any) => this.Buscar()),
       null
     );
   }
@@ -212,14 +214,14 @@ export class ClientesComponent implements OnInit {
   }
 
   ImprimirListado() {
-    this.modalDialogService.Alert('Sin desarrollar...');
+    this.modalDialogService.Alert("Sin desarrollar...");
   }
 
-  GetArticuloFamiliaNombre(Id){
-    var ArticuloFamilia = this.Familias.filter(x => x.IdArticuloFamilia === Id)[0];
-    if (ArticuloFamilia)
-        return ArticuloFamilia.Nombre;
-    else
-      return "";
+  GetArticuloFamiliaNombre(Id) {
+    var ArticuloFamilia = this.Familias.filter(
+      x => x.IdArticuloFamilia === Id
+    )[0];
+    if (ArticuloFamilia) return ArticuloFamilia.Nombre;
+    else return "";
   }
 }
