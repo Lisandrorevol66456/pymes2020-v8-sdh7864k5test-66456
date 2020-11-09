@@ -34,13 +34,13 @@
 </form>
 
 <!-- Tabla de resutados de busqueda y Paginador-->
-<div id="divTablaResultados" *ngIf="AccionABMC == 'L' && Lista?.length > 0">
+<div id="divTablaResultados" class="col-sm-11" *ngIf="AccionABMC == 'L' ">
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th class="text-center">Nombre</th>
-				<th class="text-center">Numero de documento </th>
-				<th class="text-center">Tiene trabajo</th>
+				<th class="text-center col-sm-5">Nombre</th>
+				<th class="text-center col-sm-2 ">Numero de documento </th>
+				<th class="text-center col-sm-3">Tiene trabajo</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -53,7 +53,7 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
     this.FormFiltro = this.formBuilder.group({
-      Nombre: [""],
+      NumeroDocumento: [null],
       TieneTrabajo: [null]
     });
     this.FormReg = this.formBuilder.group({
