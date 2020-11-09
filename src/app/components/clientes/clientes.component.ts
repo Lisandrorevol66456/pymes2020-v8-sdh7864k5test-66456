@@ -93,7 +93,8 @@ export class ClientesComponent implements OnInit {
     this.clientesService
       .getBuscar(
         this.FormFiltro.value.NumeroDocumento,
-        this.FormFiltro.value.TieneTrabajo
+        this.FormFiltro.value.TieneTrabajo,
+        this.Pagina
       )
       .subscribe((res: any) => {
         this.Lista = res.Lista;

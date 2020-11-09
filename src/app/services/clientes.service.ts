@@ -21,7 +21,7 @@ export class ClientesService {
     //this.resourceUrl="http://localhost:3000/Clientes";
   }
 
-  getBuscar(NumeroDocumento: number, TieneTrabajo: boolean) {
+  getBuscar(NumeroDocumento: number, TieneTrabajo: boolean, Pagina: number) {
     let params = new HttpParams();
     if (NumeroDocumento != null) {
       params = params.append("NumeroDocumento", NumeroDocumento.toString());
@@ -30,7 +30,7 @@ export class ClientesService {
       // para evitar error de null.ToString()
       params = params.append("TieneTrabajo", TieneTrabajo.toString());
     }
-
+    params = params.append("Pagina", Pagina.toString());
     return this.httpClient.get(this.resourceUrl, { params: params });
   }
   get() {
